@@ -1,0 +1,24 @@
+\begin{task}{159}
+Функция $n(s)$ задана в виде $n(s):=\max(n_0 | (n_0!)^{\ln{n_0}}\leq s)$. Найдите асимптотику этой функции при $n \rightarrow \infty$.
+\end{task}
+
+\begin{solution}
+Из условия задачи $(n!)^{\ln{n}}\leq s < ((n+1)!)^{\ln(n+1)}$. Прологарифмируем полученное неравенство: $\ln{n}\cdot \ln(n!) \leq \ln{s} < \ln(n + 1)\cdot \ln((n + 1)!)$.
+Докажем, что $\ln(n!) \sim n\cdot \ln{n}$.
+\begin{equation*}
+    \begin{split}
+        n! \sim \sqrt{2\pi n}\cdot\left(\frac{n}{e}\right)^n\\
+        \ln{n!} \sim n\cdot\ln{n}-n+\ln(\sqrt{2\pi n})\\
+        \ln{n!} \sim n\cdot\ln{n}
+    \end{split}
+\end{equation*} Учитывая доказанное асимптотическое равенство, получим
+\[n\cdot \ln^2{n}\lesssim \ln{s} \lesssim (n + 1)\cdot\ln^2(n + 1)\]
+Так как $(n + 1)\cdot\ln^2(n + 1) \sim n\cdot \ln^2{n}$ (можно доказать, посчитав соответствующий предел), то $n\cdot \ln^2{n}\lesssim \ln{s} \lesssim n\cdot \ln^2{n}$, откуда следует, что 
+
+\begin{equation}
+\ln{s}\sim n\cdot \ln^2{n}. \label{eq:1}
+\end{equation}
+Прологарифмировав полученное выражение, получим:
+\[\ln{\ln{s}}\sim \ln{n}+2\ln{\ln{n}}.\]
+При $n\rightarrow \infty$ выполнено $\ln{\ln{n}} = o(\ln{n})$, значит, $\ln{\ln{s}}\sim \ln{n}$. Подставляя в~\eqref{eq:1}, получим асимптотику $n \sim \frac{\ln{s}}{(\ln{\ln{s}})^2}$.
+\end{solution}

@@ -1,0 +1,22 @@
+\begin{task}{143}
+Найдите асимптотику величины $\binom{7n}{3n+\log_{2}{n}}$ при $n \rightarrow +\infty$. Под нахождением асимптотики понимается нахождение такой функции $f$, между которой и оцениваемой величиной можно было бы поставить знак $\sim$. Ответ принимается только в виде формулы, не содержащей неопределённостей вида $1^{\infty}, 0^0, (\text{const}+0)^{\infty}$ и пр.
+\end{task}
+\begin{solution}
+$\binom{7n}{3n+\log_{2}{n}}=\frac{(7n)!}{(3n+\log_{2}{n})!(4n-\log_{2}{n})!}$. Используя формулу Стирлинга, получим асимптотическое равенство 
+\begin{equation*}
+    \begin{split}
+    \binom{7n}{3n+\log_{2}{n}}\sim \frac{\sqrt{2\pi\cdot 7n}\cdot\left(\frac{7n}{e}\right)^{7n}}{\sqrt{2\pi(3n+\log_{2}{n})}\left(\frac{3n+\log_{2}{n}}{e}\right)^{3n+\log_{2}{n}}\cdot\sqrt{2\pi(4n-\log_{2}{n})}\left(\frac{4n-\log_{2}{n}}{e}\right)^{4n-\log_{2}{n}}}=\\
+    =\frac{\sqrt{7n}\cdot(7n)^{7n}}{\sqrt{2\pi}\cdot\sqrt{3n+\log_{2}{n}}\cdot\sqrt{4n-\log_{2}{n}}\cdot\left(\frac{3n+\log_{2}{n}}{e}\right)^{3n+\log_{2}{n}}\cdot\left(\frac{4n-\log_{2}{n}}{e}\right)^{4n-\log_{2}{n}}}
+    \end{split}
+\end{equation*}
+Поскольку $\log_{2}{n} = o(n)$, то последнее выражение асимптотически равно
+    \begin{flalign*}
+        &\sqrt{\frac{7}{24\pi}}\cdot\frac{7^{7n}\cdot n^{7n}}{\sqrt{n}\cdot(3n)^{3n+\log_{2}{n}}\cdot\left(1+\frac{\log_{2}{n}}{3n}\right)^{3n+\log_{2}{n}}\cdot(4n)^{4n-\log_{2}{n}}\cdot\left(1-\frac{\log_{2}{n}}{4n}\right)^{4n-\log_{2}{n}}}=&\\
+        &=\sqrt{\frac{7}{24\pi}}\cdot\frac{7^{7n}}{\sqrt{n}\cdot3^{3n+\log_{2}{n}}\cdot 4^{4n-\log_{2}{n}}\cdot\exp\left((3n+\log_{2}{n})\cdot\ln\left(1+\frac{\log_{2}{n}}{3n}\right)\right)\cdot\exp\left((4n-\log_{2}{n})\cdot\ln\left(1-\frac{\log_{2}{n}}{4n}\right)\right)}\sim&\\
+        &\sim \sqrt{\frac{7}{24\pi}}\cdot\frac{7^{7n}}{\sqrt(n)\cdot 3^{3n+\log_{2}{n}}\cdot 4^{4n-\log_{2}{n}}\cdot\exp\left((3n+\log_{2}{n})\cdot\left(\frac{\log_{2}{n}}{3n}-\frac{1}{2}\cdot\left(\frac{\log_{2}{n}}{3n}\right)^{2}+o\left(\left(\frac{\ln{n}}{n}\right)^{3}\right)\right)\right)}\cdot&\\
+        &\cdot\frac{1}{\exp\left((4n-\log_{2}{n})\cdot\left(\frac{-\log_{2}{n}}{4n}-\frac{1}{2}\cdot\left(\frac{\log_{2}{n}}{4n}\right)^{2}+o\left(\left(\frac{\ln{n}}{n}\right)^{2}\right)\right)\right)}\sim&\\
+        &\sim \sqrt{\frac{7}{24\pi}}\cdot\frac{7^{7n}}{\sqrt{n}\cdot 3^{3n+\log_{2}{n}}\cdot 4^{4n-\log_{2}{n}}\cdot\exp\left(\log_{2}{n}+\frac{1}{2}\cdot\frac{(\log_{2}{n})^2}{3n}+o\left(\frac{\ln{n}}{n^2}\right)\right)\cdot\exp\left(-\log_{2}{n}+\frac{1}{2}\cdot\frac{(\log_{2}{n})^2}{4n}+o\left(\frac{\ln{n}}{n}\right)\right)}\sim&\\
+        &\sim \sqrt{\frac{7}{24\pi}}\cdot\frac{7^{7n}}{\sqrt{n}\cdot 3^{3n+\log_{2}{n}}\cdot 4^{4n-\log_{2}{n}}\cdot\exp\left(\frac{(\log_{2}{n})^2}{3n}+\frac{(\log_{2}{n})^2}{4n}\right)}\sim&\\
+        &\sim \sqrt{\frac{7}{24\pi}}\cdot\frac{7^{7n}}{\sqrt{n}\cdot 3^{3n+\log_{2}{n}}\cdot 4^{4n-\log_{2}{n}}}
+    \end{flalign*}
+\end{solution}
